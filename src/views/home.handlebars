@@ -1,0 +1,16 @@
+<div class="container">
+    <h1>Bienvenido a Mi Tienda</h1>
+    <h2>Productos Disponibles</h2>
+    <ul id="productList">
+    {{#each products}}
+    <li>
+        <a href="/products/{{this.id}}"><strong>{{this.title}}</strong></a> ({{this.category}}) - ${{this.price}} <br>
+        Descripción: {{this.description}} <br>
+        Código: {{this.code}} - Stock: {{this.stock}} <br>
+        ID: {{this.id}}
+    </li>
+    {{/each}}
+    {{#unless products}}
+    <li>No hay productos disponibles.</li>
+    {{/unless}}
+</ul>

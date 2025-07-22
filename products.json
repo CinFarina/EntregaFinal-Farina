@@ -1,0 +1,16 @@
+[
+  {
+    "id": "6444583f-0ce1-4b00-a305-61af52c7d51d",
+    "title": "Zapatillas Deportivas",
+    "description": "Zapatillas cómodas y ligeras para correr.",
+    "code": "ZAP001",
+    "price": 79.99,
+    "status": true,
+    "stock": 50,
+    "category": "Calzado",
+    "thumbnails": [
+      "/img/zap1.jpg",
+      "/img/zap2.jpg"
+    ]
+  }
+]

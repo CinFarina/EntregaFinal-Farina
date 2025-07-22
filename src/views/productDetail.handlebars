@@ -1,0 +1,26 @@
+<div class="container">
+    {{#if product}}
+        <h1>Detalle del Producto: {{product.title}}</h1>
+        <p><strong>Descripción:</strong> {{product.description}}</p>
+        <p><strong>Código:</strong> {{product.code}}</p>
+        <p><strong>Precio:</strong> ${{product.price}}</p>
+        <p><strong>Stock:</strong> {{product.stock}}</p>
+        <p><strong>Categoría:</strong> {{product.category}}</p>
+        {{#if product.thumbnails}}
+            <p><strong>Imágenes:</strong></p>
+            <ul>
+                {{#each product.thumbnails}}
+                <li><img src="{{this}}" alt="Imagen del producto" style="max-width: 200px;"></li>
+                {{/each}}
+            </ul>
+        {{/if}}
+        <p><strong>ID:</strong> {{product.id}}</p>
+
+        <br>
+        <a href="/">Volver a la lista de productos</a>
+        {{else}}
+        <h1>Producto No Encontrado</h1>
+        <p>Lo sentimos, el producto solicitado no existe.</p>
+        <a href="/">Volver a la página principal</a>
+    {{/if}}
+</div>

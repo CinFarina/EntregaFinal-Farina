@@ -1,0 +1,27 @@
+{
+  "name": "primerentrega-farina",
+  "version": "1.0.0",
+  "description": "API para gestión de productos y carritos de compra",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "backend",
+    "api"
+  ],
+  "author": "Tu Nombre",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^8.0.2",
+    "socket.io": "^4.8.1",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
