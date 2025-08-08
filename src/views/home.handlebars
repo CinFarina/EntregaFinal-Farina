@@ -1,16 +1,23 @@
 <div class="container">
-    <h1>Bienvenido a Mi Tienda</h1>
-    <h2>Productos Disponibles</h2>
-    <ul id="productList">
-    {{#each products}}
-    <li>
-        <a href="/products/{{this.id}}"><strong>{{this.title}}</strong></a> ({{this.category}}) - ${{this.price}} <br>
-        Descripción: {{this.description}} <br>
-        Código: {{this.code}} - Stock: {{this.stock}} <br>
-        ID: {{this.id}}
-    </li>
-    {{/each}}
-    {{#unless products}}
-    <li>No hay productos disponibles.</li>
-    {{/unless}}
-</ul>
+    <h1>Productos</h1>
+    <ul>
+        {{#each products}}
+            <li>
+                <h3>{{this.title}}</h3>
+                <p>Precio: ${{this.price}}</p>
+                <button onclick="addToCart('{{this._id}}')">Agregar al Carrito</button>
+                <a href="/products/{{this._id}}">Ver detalles</a>
+            </li>
+        {{/each}}
+    </ul>
+
+    <div class="pagination">
+        {{#if pagination.hasPrevPage}}
+            <a href="/?page={{pagination.prevPage}}&limit={{pagination.limit}}">Anterior</a>
+        {{/if}}
+        <span>Página {{pagination.page}} de {{pagination.totalPages}}</span>
+        {{#if pagination.hasNextPage}}
+            <a href="/?page={{pagination.nextPage}}&limit={{pagination.limit}}">Siguiente</a>
+        {{/if}}
+    </div>
+</div>
