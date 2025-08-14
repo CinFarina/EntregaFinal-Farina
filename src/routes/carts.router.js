@@ -12,6 +12,35 @@ router.post('/', async (req, res) => {
     }
 });
 
+// POST /api/carts/:cid/products/:pid - Agrega un producto a un carrito
+router.post('/:cid/products/:pid', async (req, res) => {
+    const { cid, pid } = req.params;
+    try {
+        const cart = await cartModel.findById(cid);
+        if (!cart) {
+            return res.status(404).json({ status: 'error', message: 'Carrito no encontrado' });
+        }
+        
+        const product = await productModel.findById(pid);
+        if (!product) {
+            return res.status(404).json({ status: 'error', message: 'Producto no encontrado' });
+        }
+        
+        const productInCart = cart.products.find(item => item.product.toString() === pid);
+        if (productInCart) {
+            productInCart.quantity++;
+        } else {
+            cart.products.push({ product: pid, quantity: 1 });
+        }
+        
+        await cart.save();
+        
+        res.status(201).json({ status: 'success', message: 'Producto agregado al carrito', payload: cart });
+    } catch (error) {
+        res.status(500).json({ status: 'error', message: 'Error al agregar producto al carrito' });
+    }
+});
+
 // GET
 router.get('/:cid', async (req, res) => {
     const { cid } = req.params;
@@ -41,25 +70,6 @@ router.delete('/:cid/products/:pid', async (req, res) => {
         res.json({ status: 'success', message: 'Producto eliminado del carrito', payload: cart });
     } catch (error) {
         res.status(500).json({ status: 'error', message: 'Error al eliminar producto del carrito' });
-    }
-});
-
-// PUT
-router.put('/:cid', async (req, res) => {
-    const { cid } = req.params;
-    const { products } = req.body; 
-    try {
-        const cart = await cartModel.findById(cid);
-        if (!cart) {
-            return res.status(404).json({ status: 'error', message: 'Carrito no encontrado' });
-        }
-        
-        cart.products = products;
-        await cart.save();
-        
-        res.json({ status: 'success', message: 'Carrito actualizado', payload: cart });
-    } catch (error) {
-        res.status(500).json({ status: 'error', message: 'Error al actualizar carrito' });
     }
 });
 
